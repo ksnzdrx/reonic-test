@@ -46,8 +46,6 @@ export function runSimulation(
 
   let totalEnergy: number = 0;
   let actualMaxPower: number = 0;
-  // let totalArrivals: number = 0;
-  // let arrivalsNeedingCharge: number = 0;
 
   for (let tick: number = 0; tick < TICKS_PER_YEAR; tick++) {
     let currentPower: number = 0;
@@ -96,10 +94,7 @@ export function runSimulation(
         // new car arrives
         const energyNeeded: number = getChargingNeeds(rng);
 
-        // totalArrivals++;
          if (energyNeeded > 0) {
-          // arrivalsNeedingCharge++;
-
           state.energyDemand = energyNeeded;
           state.energyToCharge = energyNeeded;
           state.isFree = false;
@@ -113,8 +108,7 @@ export function runSimulation(
 
   const theoreticalMaxPower: number = numChargeports * chargingPowerToUse;
   const concurrencyFactor: number = actualMaxPower / theoreticalMaxPower;
-
-  // console.log(`Debug: Total arrivals: ${totalArrivals}, Arrivals needing charge: ${arrivalsNeedingCharge}, Total Energy consumed: ${totalEnergy}`);
+  
   return {
     totalEnergy,
     theoreticalMaxPower,
